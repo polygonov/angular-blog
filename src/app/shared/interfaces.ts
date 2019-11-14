@@ -7,6 +7,7 @@ export interface User {
 export interface FbAuthResponse {
   idToken: string
   expiresIn: string
+  localId?: string
 }
 
 export interface Post {

@@ -25,7 +25,7 @@ import {AlertService} from './shared/services/alert.service';
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [
-          {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
+          {path: '', redirectTo: '/admin/dashboard', pathMatch: 'full'},
           {path: 'login', component: LoginPageComponent},
           {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
           {path: 'create', component: CreatePageComponent, canActivate: [AuthGuard]},

@@ -9,7 +9,8 @@
   </div>
 
   <button
-    [routerLink]="['/post', post.id]"
+    (click)="setlinks()"
+    [routerLink]="[post.id]"
     class="btn btn-dark"
   >Открыть</button>
 </div>

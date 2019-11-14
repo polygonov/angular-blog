@@ -43,6 +43,6 @@ export class CreatePageComponent implements OnInit {
       this.alert.success('Пост был создан')
     })
 
-    console.log(post)
+    // console.log(post)
   }
 }

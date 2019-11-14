@@ -54,9 +54,11 @@ export class LoginPageComponent implements OnInit {
       password: this.form.value.password
     }
 
-    this.auth.login(user).subscribe(() => {
+    this.auth.login(user).subscribe(responce => {
+      // console.log('RESPONSE', responce)
+      this.auth.userId = responce.localId
       this.form.reset()
-      this.router.navigate((['/admin', 'dashboard']))
+      this.router.navigate((['/admin', 'create']))
       this.submitted = false
     }, () => {
       this.submitted = false

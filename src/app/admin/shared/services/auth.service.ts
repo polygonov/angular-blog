@@ -1,16 +1,28 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {FbAuthResponse, User} from '../../../shared/interfaces';
-import {Observable, Subject, throwError} from 'rxjs';
+import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {catchError, tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {AngularFireAuth} from "@angular/fire/auth";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-  public errors$: Subject<string> = new Subject<string>()
+  private eventAuthError = new BehaviorSubject<string>("");
+  eventAuthError$ = this.eventAuthError.asObservable();
 
-  constructor(private http: HttpClient) {}
+  newUser: any;
+
+  public errors$: Subject<string> = new Subject<string>()
+  userId: string   //   public userId = (this.router.url.toString()).split('/')[1].toString()
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private afAuth: AngularFireAuth
+  ) {}
 
   get token(): string {
     const expDate = new Date(localStorage.getItem('fb-token-exp'))
@@ -31,6 +43,7 @@ export class AuthService {
   }
 
   logout() {
+    //this.userId = 'posts'
     this.setToken(null)
   }
 
@@ -58,6 +71,9 @@ export class AuthService {
 
   private setToken(responce: FbAuthResponse | null) {
     if (responce) {
+      // console.log("TOKEN", this.token)
+      // console.log("responce", responce)
+      localStorage.setItem('localId', responce.localId)
       const expDate = new Date(new Date().getTime() + +responce.expiresIn * 1000)
       localStorage.setItem('fb-token', responce.idToken)
       localStorage.setItem('fb-token-exp', expDate.toString())
@@ -65,5 +81,16 @@ export class AuthService {
       localStorage.clear()
     }
 
+  }
+
+  createUser(user) {
+    console.log(user);
+    this.afAuth.auth.createUserWithEmailAndPassword( user.email, user.password)
+      .then(userCredential => {
+        this.router.navigate(['/admin/login']);
+      })
+      .catch( error => {
+        this.eventAuthError.next(error);
+      });
   }
 }

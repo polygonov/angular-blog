@@ -14,6 +14,11 @@ import {registerLocaleData} from '@angular/common';
 import ruLocale from '@angular/common/locales/ru';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { RegistrationComponent } from './registration/registration.component';
+import {FormsModule} from "@angular/forms";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFirestoreModule} from "@angular/fire/firestore";
 
 registerLocaleData(ruLocale, 'ru')
 
@@ -29,13 +34,18 @@ const INTERCEPTOR_PROVIDER: Provider = {
     MainLayoutComponent,
     HomePageComponent,
     PostPageComponent,
-    PostComponent
+    PostComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    FormsModule,
+    AngularFireModule.initializeApp( environment ),
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]

@@ -3,6 +3,8 @@ import {PostsService} from '../../shared/posts.service';
 import {Post} from '../../shared/interfaces';
 import {Subscription} from 'rxjs';
 import {AlertService} from '../shared/services/alert.service';
+import {AuthService} from '../shared/services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -15,11 +17,15 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   pSub: Subscription
   dSub: Subscription
   searchStr = ''
+  userId = localStorage.getItem('localId')
 
   constructor(
     private postsService: PostsService,
-    private alert: AlertService
+    private alert: AlertService,
+    public auth: AuthService,
+    private router: Router
   ) {
+
   }
 
   ngOnInit() {

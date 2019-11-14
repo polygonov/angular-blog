@@ -1,4 +1,10 @@
 <div *ngIf="posts.length; else loading">
+
+  <button
+    [routerLink]="['/blog', userId]"
+    class="btn btn-light to-blog"
+  >Перейти в блог</button>
+
   <div class = "form-control">
     <input type="text" placeholder="Найти пост..." [(ngModel)]="searchStr">
   </div>
@@ -30,8 +36,9 @@
     </tr>
     </tbody>
   </table>
+
 </div>
 
 <ng-template #loading>
-  <p class="text-center">Идет загрузка...</p>
+  <p class="text-center">Ожидание данных...</p>
 </ng-template>

@@ -9,10 +9,12 @@ import {AuthService} from '../../services/auth.service';
 })
 export class AdminLayoutComponent implements OnInit {
 
+  userId = "localStorage.getItem('localId')"
+
   constructor(
     private router: Router,
     public auth: AuthService
-  ) { }
+  ) {}
 
   ngOnInit() {
   }
