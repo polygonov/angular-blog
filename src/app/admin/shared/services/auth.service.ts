@@ -84,11 +84,8 @@ export class AuthService {
   }
 
   createUser(user) {
-    console.log(user);
-    this.afAuth.auth.createUserWithEmailAndPassword( user.email, user.password)
-      .then(userCredential => {
-        this.router.navigate(['/admin/login']);
-      })
+    //console.log(user);
+    return this.afAuth.auth.createUserWithEmailAndPassword( user.email, user.password)
       .catch( error => {
         this.eventAuthError.next(error);
       });
