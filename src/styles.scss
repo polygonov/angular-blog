@@ -71,10 +71,11 @@ img {
 }
 
 .card {
+  background: mintcream;
   padding: 1rem;
-  border: #ccc 1px dotted;
+  border: lavender 1px solid;
   margin: 0.7rem 0;
-  //box-shadow: 0px 1px 10px #999;
+  //box-shadow: 5px 5px 3px 1px lavender;
 
   &-header {
     display: flex;
