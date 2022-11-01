@@ -21,9 +21,3 @@
 (серверное приложение, NoSQL база данных), авторизация через API Firebase Auth, 
 валидация компонентов, реактивные формы, защита роутов, реализован принцип 
 lazy loading (ленивая загрузка), работа с плагинами.
-
-Проект развернут на хостинге Firebase и доступен для взаимодействия по ссылке:
-https://angular-blog-9b25e.firebaseapp.com
-
-Пример страницы блога:
-https://angular-blog-9b25e.firebaseapp.com/blog/kkJN5QZl5VaHqqc3CR0mEYQk0T33
